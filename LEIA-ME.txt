@@ -1,0 +1,34 @@
+# Projeto 30 Dias — PWA
+
+## Arquivos
+- `index.html`: aplicativo completo.
+- `manifest.webmanifest`: configuração de instalação.
+- `sw.js`: cache/offline básico.
+- `icon-192.png` e `icon-512.png`: ícones Android.
+
+## Publicação para obter um link HTTPS
+O app precisa estar hospedado em HTTPS para que o Android ofereça a instalação PWA.
+
+### Opção simples: GitHub Pages
+1. Crie ou entre em uma conta no GitHub.
+2. Crie um repositório público chamado `projeto-30-dias`.
+3. Envie todos os arquivos desta pasta para a raiz do repositório.
+4. Em Settings > Pages, escolha Deploy from a branch, selecione `main` e `/ (root)`, e salve.
+5. Aguarde a publicação. O GitHub mostrará o endereço HTTPS do site.
+
+### Instalar no Android / Chrome
+1. Abra o endereço HTTPS publicado no Chrome.
+2. Toque no menu ⋮.
+3. Escolha “Instalar app” ou “Adicionar à tela inicial”.
+4. Confirme. O ícone Projeto 30D aparecerá na tela inicial.
+
+## Dados e privacidade
+- Registros ficam no armazenamento local do navegador/aplicativo deste aparelho.
+- Não há conta, sincronização em nuvem nem envio automático de dados.
+- Limpar dados do navegador pode apagar os registros. Use “Exportar backup JSON” periodicamente.
+- Fotos são guardadas localmente no navegador; mantenha cada arquivo até 2 MB.
+
+## Limitações da primeira versão
+- É um PWA local, sem backend, login ou sincronização entre dispositivos.
+- Não contém imagens externas dos exercícios; os nomes, músculos-alvo, séries e repetições estão incluídos.
+- Metas nutricionais são editáveis e devem ser individualizadas com profissional de saúde.

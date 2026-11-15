@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#171923">
+<meta name="description" content="Acompanhamento pessoal de treino, alimentação, cardio e evolução por 30 dias.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<title>Projeto 30 Dias</title>
+<style>
+:root{--bg:#101218;--panel:#1b1e28;--panel2:#242936;--text:#f4f5f7;--muted:#a9afbd;--accent:#c4f06b;--accent2:#8fae42;--line:#343a48;--danger:#ff8d8d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{position:sticky;top:0;z-index:5;background:#171923f2;backdrop-filter:blur(12px);padding:16px 18px calc(12px + env(safe-area-inset-top));border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px}.logo{width:38px;height:38px;border-radius:13px;background:var(--accent);color:#171923;display:grid;place-items:center;font-weight:900;font-size:19px}
+h1{font-size:18px;margin:0}header small{color:var(--muted)}main{max-width:760px;margin:auto;padding:16px 14px 100px}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:10;background:#171923f5;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(12px)}
+nav button{border:0;background:none;color:var(--muted);font-size:10px;padding:5px 2px;display:grid;gap:3px;justify-items:center;min-width:54px}nav button b{font-size:19px}nav button.active{color:var(--accent)}
+.page{display:none}.page.active{display:block}.hero{background:linear-gradient(135deg,#28313b,#1b2029);border:1px solid var(--line);border-radius:22px;padding:20px;margin-bottom:14px}
+.eyebrow{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase}
+h2{font-size:23px;line-height:1.2;margin:7px 0}h3{font-size:16px;margin:0 0 12px}p{color:var(--muted);margin:6px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:15px;margin-bottom:11px;min-width:0}.stat{font-size:25px;font-weight:800;letter-spacing:-.7px}.muted,.hint{color:var(--muted);font-size:12px}.accent{color:var(--accent)}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.progress{height:9px;background:#343a48;border-radius:20px;overflow:hidden;margin:10px 0}.progress span{display:block;height:100%;background:var(--accent);width:0%;border-radius:20px}
+button,.btn{background:var(--accent);color:#171923;border:0;border-radius:12px;padding:11px 14px;font-weight:750;font-size:13px;cursor:pointer}.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}.danger{background:#492c33;color:#ffd9d9}.full{width:100%}
+input,select,textarea{width:100%;background:#11151d;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--text);font:inherit;margin:5px 0 10px;min-width:0}label{font-size:12px;color:var(--muted);display:block;margin-top:6px}
+.exercise{padding:12px 0;border-bottom:1px solid var(--line)}.exercise:last-child{border:0}.exercise strong{display:block}.exercise small{color:var(--muted)}
+.checkrow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--line)}input[type=checkbox]{width:19px;height:19px;accent-color:var(--accent);margin:0}
+.pill{font-size:11px;border-radius:20px;padding:4px 8px;background:#303747;color:var(--muted)}.days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.day{padding:9px 0;text-align:center;background:var(--panel2);border-radius:9px;font-size:12px;color:var(--muted)}.day.done{background:#354326;color:var(--accent)}.day.today{outline:2px solid var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;padding:9px 5px;border-bottom:1px solid var(--line)}th{color:var(--muted)}
+.photo{width:100%;max-height:240px;object-fit:cover;border-radius:12px;margin-top:8px}.empty{padding:22px;text-align:center;color:var(--muted)}
+@media(min-width:600px){main{padding-top:24px}.grid.four{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">30</div><div><h1>PROJETO 30 DIAS</h1><small>Treino · Nutrição · Evolução</small></div></div></header>
+<main>
+<section id="home" class="page active">
+ <div class="hero"><div class="eyebrow">Seu projeto começa aqui</div><h2>Constância constrói resultados.</h2><p>30 dias para fortalecer glúteos, reduzir medidas e criar uma rotina sustentável.</p><div class="row" style="margin-top:16px"><div><div class="stat" id="dayCount">Dia 1/30</div><div class="muted" id="dateRange">Registre seu primeiro dia</div></div><span class="pill" id="phase">ADAPTAÇÃO</span></div><div class="progress"><span id="overallBar"></span></div><div class="muted" id="overallText">0% do projeto concluído</div></div>
+ <div class="grid four">
+  <div class="card"><div class="muted">Peso atual</div><div class="stat" id="homeWeight">80,0 kg</div></div>
+  <div class="card"><div class="muted">Cintura</div><div class="stat" id="homeWaist">— cm</div></div>
+  <div class="card"><div class="muted">Treinos feitos</div><div class="stat" id="homeWorkouts">0</div></div>
+  <div class="card"><div class="muted">Dias registrados</div><div class="stat" id="homeDays">0/30</div></div>
+ </div>
+ <div class="card"><div class="row"><h3>Hoje</h3><span class="pill" id="todayPlan">Descanso / caminhada</span></div><div id="todayTasks"></div><button class="full" onclick="showPage('diario')">Registrar meu dia</button></div>
+ <div class="card"><h3>Atalhos</h3><div class="grid"><button class="secondary" onclick="showPage('treinos')">Ver treino</button><button class="secondary" onclick="showPage('nutricao')">Registrar alimentação</button><button class="secondary" onclick="showPage('evolucao')">Registrar medidas</button><button class="secondary" onclick="showPage('relatorios')">Ver evolução</button></div></div>
+</section>
+
+<section id="treinos" class="page">
+ <div class="eyebrow">Planejamento semanal</div><h2>Treinos</h2><p>Quatro sessões de musculação. Registre cargas e repetições para acompanhar a progressão.</p>
+ <div class="card"><label>Escolha o treino</label><select id="workoutSelect" onchange="renderWorkout()"><option value="A">A · Glúteos e posteriores</option><option value="B">B · Costas, ombros e abdômen</option><option value="C">C · Glúteos e quadríceps</option><option value="D">D · Superiores e abdômen</option></select><div id="workoutContent"></div><button class="full" onclick="completeWorkout()">Marcar treino como concluído</button></div>
+ <div class="card"><h3>Divisão sugerida</h3><table><tr><td>Segunda</td><td>Treino A</td></tr><tr><td>Terça</td><td>Treino B</td></tr><tr><td>Quarta</td><td>Caminhada / recuperação</td></tr><tr><td>Quinta</td><td>Treino C</td></tr><tr><td>Sexta</td><td>Treino D</td></tr><tr><td>Sábado</td><td>Caminhada leve</td></tr><tr><td>Domingo</td><td>Descanso</td></tr></table></div>
+ <div class="hint">Faça 5–7 min de aquecimento. Trabalhe geralmente com 1–3 repetições em reserva. Interrompa se houver dor aguda ou perda de técnica.</div>
+</section>
+
+<section id="nutricao" class="page">
+ <div class="eyebrow">Nutrição diária</div><h2>Alimentação</h2><p>Metas iniciais editáveis. Calorias e macros são estimativas, não prescrição clínica.</p>
+ <div class="grid"><div class="card"><div class="muted">Calorias</div><div class="stat"><span id="calNow">0</span><small> / <span id="calGoal">1900</span></small></div><div class="progress"><span id="calBar"></span></div></div><div class="card"><div class="muted">Proteína</div><div class="stat"><span id="proteinNow">0</span><small> / <span id="proteinGoal">145</span> g</small></div><div class="progress"><span id="proteinBar"></span></div></div></div>
+ <div class="card"><h3>Adicionar refeição</h3><label>Refeição / alimento</label><input id="foodName" placeholder="Ex.: almoço — frango, arroz e feijão"><div class="grid"><div><label>Calorias (kcal)</label><input id="foodCal" type="number" min="0" placeholder="450"></div><div><label>Proteína (g)</label><input id="foodProtein" type="number" min="0" placeholder="35"></div></div><button class="full" onclick="addFood()">Adicionar ao diário</button><div id="foodList"></div></div>
+ <div class="card"><h3>Metas diárias</h3><div class="grid"><div><label>Meta calórica</label><input id="goalCal" type="number" value="1900"></div><div><label>Meta proteína (g)</label><input id="goalProtein" type="number" value="145"></div></div><button class="secondary full" onclick="saveGoals()">Salvar metas</button></div>
+ <div class="hint">Referência inicial: cerca de 1.900 kcal e 145 g de proteína. Ajuste com nutricionista conforme evolução, fome, saúde e desempenho.</div>
+</section>
+
+<section id="cardio" class="page">
+ <div class="eyebrow">Movimento e condicionamento</div><h2>Cardio & passos</h2><div class="card"><h3>Registrar atividade</h3><label>Tipo</label><select id="cardioType"><option>Caminhada</option><option>Esteira</option><option>Bicicleta</option><option>Outro</option></select><div class="grid"><div><label>Duração (min)</label><input id="cardioMinutes" type="number" min="0" placeholder="30"></div><div><label>Passos do dia</label><input id="steps" type="number" min="0" placeholder="7500"></div></div><button class="full" onclick="saveCardio()">Salvar atividade</button><div id="cardioList"></div></div>
+ <div class="card"><h3>Referência semanal</h3><p>3 sessões de cardio moderado de 25–40 minutos e progressão gradual para 7–10 mil passos, conforme sua condição atual.</p></div>
+</section>
+
+<section id="diario" class="page">
+ <div class="eyebrow">Consistência diária</div><h2>Meu diário</h2><div class="card"><label>Data</label><input id="diaryDate" type="date"><div id="habitList"></div><label>Observações do dia</label><textarea id="notes" rows="3" placeholder="Energia, sono, fome, disposição..."></textarea><button class="full" onclick="saveDiary()">Salvar diário</button></div>
+</section>
+
+<section id="evolucao" class="page">
+ <div class="eyebrow">Acompanhamento corporal</div><h2>Medidas & fotos</h2><div class="card"><h3>Novo registro</h3><label>Data</label><input id="measureDate" type="date"><div class="grid"><div><label>Peso (kg)</label><input id="mWeight" type="number" step=".1" placeholder="80"></div><div><label>Cintura (cm)</label><input id="mWaist" type="number" step=".1" placeholder="—"></div><div><label>Abdômen no umbigo (cm)</label><input id="mAbdomen" type="number" step=".1" placeholder="—"></div><div><label>Quadril / glúteos (cm)</label><input id="mHip" type="number" step=".1" placeholder="—"></div></div><label>Fotos de evolução (opcional)</label><input id="photos" type="file" accept="image/*" multiple><p class="hint">As fotos ficam neste aparelho. Evite enviar imagens íntimas para serviços compartilhados.</p><button class="full" onclick="saveMeasurement()">Salvar avaliação</button></div><div id="measureList"></div>
+</section>
+
+<section id="relatorios" class="page">
+ <div class="eyebrow">Visão geral</div><h2>Relatórios</h2><div class="grid"><div class="card"><div class="muted">Treinos concluídos</div><div class="stat" id="reportWorkouts">0</div></div><div class="card"><div class="muted">Minutos de cardio</div><div class="stat" id="reportCardio">0</div></div><div class="card"><div class="muted">Dias com diário</div><div class="stat" id="reportDays">0</div></div><div class="card"><div class="muted">Registros de medidas</div><div class="stat" id="reportMeasures">0</div></div></div><div class="card"><h3>Histórico de medidas</h3><div id="measureTable"></div></div><div class="card"><h3>Backup dos seus dados</h3><p>Exporte uma cópia para guardar seus registros ou importar em outro aparelho.</p><button class="full" onclick="exportData()">Exportar backup JSON</button><label>Restaurar backup</label><input id="importFile" type="file" accept="application/json"><button class="secondary full" onclick="importData()">Importar backup</button></div><button class="danger full" onclick="resetData()">Apagar todos os dados deste aparelho</button>
+</section>
+</main>
+<nav>
+<button class="active" data-page="home" onclick="showPage('home')"><b>⌂</b>Início</button>
+<button data-page="treinos" onclick="showPage('treinos')"><b>✦</b>Treinos</button>
+<button data-page="nutricao" onclick="showPage('nutricao')"><b>◉</b>Nutrição</button>
+<button data-page="cardio" onclick="showPage('cardio')"><b>↗</b>Cardio</button>
+<button data-page="evolucao" onclick="showPage('evolucao')"><b>⌁</b>Medidas</button>
+<button data-page="relatorios" onclick="showPage('relatorios')"><b>▥</b>Dados</button>
+</nav>
+<script>
+const KEY='projeto30dias-v1';
+const workouts={
+A:[['Elevação pélvica','4 × 8–12','Glúteo máximo'],['Stiff com halteres','3 × 10–12','Glúteos e posteriores'],['Agachamento búlgaro','3 × 10 por perna','Glúteos e quadríceps'],['Mesa flexora','3 × 12–15','Posteriores'],['Cadeira abdutora','3 × 15–20','Abdutores do quadril']],
+B:[['Puxada frontal','3 × 10–12','Costas'],['Remada baixa','3 × 10–12','Costas'],['Elevação lateral','3 × 12–15','Ombros'],['Crucifixo inverso','3 × 12–15','Deltoide posterior'],['Prancha','3 × 30–45 s','Core'],['Dead bug','2 × 12 por lado','Core']],
+C:[['Agachamento','3 × 8–12','Glúteos e quadríceps'],['Leg press','3 × 10–12','Quadríceps e glúteos'],['Coice na polia','3 × 12–15','Glúteo máximo'],['Step-up','2 × 10 por perna','Glúteos e quadríceps'],['Cadeira abdutora','3 × 15–20','Abdutores do quadril']],
+D:[['Remada unilateral','3 × 10–12','Costas'],['Puxada frontal','3 × 10–12','Costas'],['Rosca bíceps','2 × 12','Bíceps'],['Tríceps na polia','2 × 12','Tríceps'],['Prancha lateral','3 × 25–35 s','Core'],['Dead bug','2 × 12 por lado','Core']]
+};
+const habits=['Musculação ou atividade programada','Meta de proteína atingida','Alimentação dentro do planejamento','Cardio ou meta de passos','Água suficiente','Sono de 7–9 horas'];
+let data=load();
+function fresh(){return {start:null,goals:{cal:1900,protein:145},foods:{},cardio:[],diary:{},workouts:[],measurements:[]}}
+function load(){try{return {...fresh(),...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){return fresh()}}
+function save(){localStorage.setItem(KEY,JSON.stringify(data));renderAll()}
+function today(){return new Date().toISOString().slice(0,10)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function showPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===id));window.scrollTo(0,0);if(id==='treinos')renderWorkout()}
+function dayIndex(){if(!data.start)return 1;return Math.max(1,Math.min(30,Math.floor((new Date(today())-new Date(data.start+'T00:00:00'))/86400000)+1))}
+function dayWorkout(){return ({1:'A',2:'B',4:'C',5:'D'})[new Date().getDay()]||null}
+function renderHome(){
+ if(!data.start){data.start=today();localStorage.setItem(KEY,JSON.stringify(data))}
+ const n=dayIndex(),completed=new Set([...Object.keys(data.diary),...data.workouts.map(x=>x.date)]),pct=Math.min(100,Math.round(completed.size/30*100));
+ document.getElementById('dayCount').textContent=`Dia ${n}/30`;document.getElementById('dateRange').textContent=`Início: ${new Date(data.start+'T12:00:00').toLocaleDateString('pt-BR')}`;
+ document.getElementById('phase').textContent=n<=7?'ADAPTAÇÃO':n<=14?'PROGRESSÃO':n<=21?'INTENSIFICAÇÃO':'CONSOLIDAÇÃO';
+ document.getElementById('overallBar').style.width=pct+'%';document.getElementById('overallText').textContent=pct+'% dos dias com atividade registrada';
+ let last=data.measurements.at(-1);document.getElementById('homeWeight').textContent=(last?.weight??80).toLocaleString('pt-BR')+' kg';document.getElementById('homeWaist').textContent=last?.waist?last.waist+' cm':'— cm';document.getElementById('homeWorkouts').textContent=data.workouts.length;document.getElementById('homeDays').textContent=Object.keys(data.diary).length+'/30';
+ let w=dayWorkout();document.getElementById('todayPlan').textContent=w?'Treino '+w:'Recuperação';document.getElementById('todayTasks').innerHTML=habits.slice(0,4).map((h,i)=>`<div class="checkrow"><span class="pill">${i+1}</span><span>${h}</span></div>`).join('');
+}
+function renderWorkout(){let k=document.getElementById('workoutSelect').value;document.getElementById('workoutContent').innerHTML=workouts[k].map((x,i)=>`<div class="exercise"><div class="row"><strong>${i+1}. ${x[0]}</strong><span class="pill">${x[1]}</span></div><small>Ênfase: ${x[2]}</small><div class="grid"><div><label>Carga (kg)</label><input type="number" step=".5" id="load${i}" placeholder="Carga"></div><div><label>Repetições realizadas</label><input id="reps${i}" placeholder="Ex.: 12 / 12 / 10"></div></div></div>`).join('')}
+function completeWorkout(){let k=document.getElementById('workoutSelect').value;let items=workouts[k].map((x,i)=>({exercise:x[0],load:document.getElementById('load'+i)?.value||'',reps:document.getElementById('reps'+i)?.value||''}));data.workouts.push({date:today(),type:k,items});save();alert('Treino registrado!')}
+function addFood(){let name=document.getElementById('foodName').value.trim(),cal=+document.getElementById('foodCal').value,protein=+document.getElementById('foodProtein').value;if(!name||cal<0||protein<0)return alert('Preencha alimento, calorias e proteína.');(data.foods[today()]??=[]).push({name,cal,protein});save();document.getElementById('foodName').value='';document.getElementById('foodCal').value='';document.getElementById('foodProtein').value=''}
+function renderNutrition(){let a=data.foods[today()]||[],c=a.reduce((s,x)=>s+x.cal,0),p=a.reduce((s,x)=>s+x.protein,0);document.getElementById('calNow').textContent=c;document.getElementById('proteinNow').textContent=p;document.getElementById('calGoal').textContent=data.goals.cal;document.getElementById('proteinGoal').textContent=data.goals.protein;document.getElementById('calBar').style.width=Math.min(100,c/data.goals.cal*100)+'%';document.getElementById('proteinBar').style.width=Math.min(100,p/data.goals.protein*100)+'%';document.getElementById('goalCal').value=data.goals.cal;document.getElementById('goalProtein').value=data.goals.protein;document.getElementById('foodList').innerHTML=a.map(x=>`<div class="checkrow"><span style="flex:1">${esc(x.name)}</span><small>${x.cal} kcal · ${x.protein} g prot.</small></div>`).join('')||'<div class="empty">Nenhuma refeição registrada hoje.</div>'}
+function saveGoals(){data.goals={cal:+document.getElementById('goalCal').value||1900,protein:+document.getElementById('goalProtein').value||145};save()}
+function saveCardio(){let minutes=+document.getElementById('cardioMinutes').value,steps=+document.getElementById('steps').value;if(!minutes&&!steps)return alert('Informe minutos ou passos.');data.cardio.push({date:today(),type:document.getElementById('cardioType').value,minutes,steps});save();document.getElementById('cardioMinutes').value='';document.getElementById('steps').value=''}
+function renderCardio(){let a=data.cardio.filter(x=>x.date===today());document.getElementById('cardioList').innerHTML=a.map(x=>`<div class="checkrow"><span>${esc(x.type)}</span><span class="muted">${x.minutes||0} min · ${x.steps||0} passos</span></div>`).join('')||'<div class="empty">Nenhuma atividade registrada hoje.</div>'}
+function renderDiary(){let d=document.getElementById('diaryDate').value||today(),entry=data.diary[d]||{};document.getElementById('habitList').innerHTML=habits.map((h,i)=>`<label class="checkrow"><input type="checkbox" id="habit${i}" ${entry.habits?.[i]?'checked':''}><span>${h}</span></label>`).join('');document.getElementById('notes').value=entry.notes||''}
+function saveDiary(){let d=document.getElementById('diaryDate').value||today();data.diary[d]={habits:habits.map((_,i)=>document.getElementById('habit'+i).checked),notes:document.getElementById('notes').value};save();alert('Diário salvo!')}
+async function saveMeasurement(){let d=document.getElementById('measureDate').value||today(),m={date:d,weight:+document.getElementById('mWeight').value||null,waist:+document.getElementById('mWaist').value||null,abdomen:+document.getElementById('mAbdomen').value||null,hip:+document.getElementById('mHip').value||null,photos:[]};let files=[...document.getElementById('photos').files];for(let f of files){if(f.size>2*1024*1024){alert('Cada foto deve ter até 2 MB para manter o armazenamento local leve.');continue}m.photos.push(await new Promise(res=>{let r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(f)}))}if(!m.weight&&!m.waist&&!m.abdomen&&!m.hip&&!m.photos.length)return alert('Preencha ao menos uma medida ou foto.');data.measurements.push(m);save();alert('Avaliação salva neste aparelho.')}
+function renderMeasures(){document.getElementById('measureList').innerHTML=[...data.measurements].reverse().map(m=>`<div class="card"><div class="row"><strong>${new Date(m.date+'T12:00:00').toLocaleDateString('pt-BR')}</strong><span class="pill">Avaliação</span></div><p>Peso: ${m.weight??'—'} kg · Cintura: ${m.waist??'—'} cm</p><p>Abdômen: ${m.abdomen??'—'} cm · Quadril: ${m.hip??'—'} cm</p>${(m.photos||[]).map(p=>`<img class="photo" src="${p}">`).join('')}</div>`).join('')||'<div class="empty">Faça seu primeiro registro no dia 1.</div>';document.getElementById('measureTable').innerHTML=data.measurements.length?`<table><tr><th>Data</th><th>Peso</th><th>Cintura</th><th>Quadril</th></tr>${data.measurements.map(m=>`<tr><td>${m.date}</td><td>${m.weight??'—'}</td><td>${m.waist??'—'}</td><td>${m.hip??'—'}</td></tr>`).join('')}</table>`:'<div class="empty">Sem medidas registradas.</div>'}
+function renderReports(){document.getElementById('reportWorkouts').textContent=data.workouts.length;document.getElementById('reportCardio').textContent=data.cardio.reduce((s,x)=>s+(x.minutes||0),0);document.getElementById('reportDays').textContent=Object.keys(data.diary).length;document.getElementById('reportMeasures').textContent=data.measurements.length}
+function renderAll(){renderHome();renderNutrition();renderCardio();renderDiary();renderMeasures();renderReports()}
+function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='projeto-30-dias-backup.json';a.click();URL.revokeObjectURL(a.href)}
+function importData(){let f=document.getElementById('importFile').files[0];if(!f)return alert('Escolha um arquivo de backup.');let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.goals||!x.measurements)throw 0;data={...fresh(),...x};save();alert('Backup restaurado.')}catch(e){alert('Arquivo inválido.')}};r.readAsText(f)}
+function resetData(){if(confirm('Apagar permanentemente todos os registros salvos neste aparelho? Exporte um backup antes, se necessário.')){data=fresh();data.start=today();save()}}
+document.getElementById('diaryDate').value=today();document.getElementById('measureDate').value=today();document.getElementById('diaryDate').addEventListener('change',renderDiary);
+renderAll();if('serviceWorker'in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body></html>
